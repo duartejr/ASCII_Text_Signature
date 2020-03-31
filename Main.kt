@@ -4,11 +4,18 @@ import java.util.*
 
 fun main() {
     val scanner = Scanner(System.`in`)
+    println("Enter name and surname: ")
     val name = scanner.nextLine().toUpperCase()
-    val asterisks = CharArray(name.length) { _ -> '*'}
-    //println(asterisks.joinToString(""))
-    newString(name)
-    //println(asterisks.joinToString(""))
+    println("Enter person's status: ")
+    val status = scanner.nextLine()
+    val lenName = lenString(name)
+    val lenStatus = status.length
+    val len = if (lenName > lenStatus) lenName else lenStatus + 4
+    val asterisks = CharArray(len) { _ -> '*'}
+    println(asterisks.joinToString(""))
+    printName(name, len)
+    printStatus(status, len)
+    println(asterisks.joinToString(""))
 }
 
 
@@ -44,15 +51,38 @@ fun alphabet(x: Char): Array<String> {
     }
 }
 
-fun newString(string: String) {
+fun printName(string: String, len: Int) {
     var n = 0
+    val whiteSpace = (len - lenString(string) + 2) / 2
+    val spaces = CharArray(whiteSpace) { _ -> ' '}
     for (n in 0..2) {
+        print("*")
+        print(spaces.joinToString(""))
         for (i in string) {
             val m = alphabet(i)
             print(m[n])
-            print("  ")
+            print(" ")
         }
-        println("")
+        print(spaces.joinToString(""))
+        println("*")
     }
 }
 
+fun lenString(string: String): Int {
+    var len = 4
+    for (i in string) {
+        val m = alphabet(i)
+        len += m[0].length + 1
+    }
+    return len
+}
+
+fun printStatus(string: String, len: Int) {
+    print("*")
+    val spaces = CharArray( (len - 2 - string.length) / 2) { _ -> ' '}
+    print(spaces.joinToString(""))
+    print(string)
+    if (2*spaces.size + 2 + string.length < len) print(" ")
+    print(spaces.joinToString(""))
+    println("*")
+}
