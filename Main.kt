@@ -166,9 +166,9 @@ fun roman(x: Char): Array<String> {
                 "888   888  ",
                 "888   888  ",
                 "`Y8bod88P\" ",
-                "          ",
-                "          ",
-                "          ")
+                "           ",
+                "           ",
+                "           ")
         'D' -> arrayOf("oooooooooo.   ",
                 "`888'   `Y8b  ",
                 " 888      888 ",
